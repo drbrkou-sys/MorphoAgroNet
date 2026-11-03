@@ -1,3 +1,7 @@
+[![GitHub Repository](https://img.shields.io/badge/GitHub-MorphoAgroNet-blue?logo=github)](https://github.com/drbrkou-sys/MorphoAgroNet)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23910076.svg)](https://doi.org/10.5281/zenodo.23910076)
+
+
 # MorphoAgroNet
 
 ### A Geometry-Guided Multi-Scale Deep Learning Framework for Fine-Grained Plant Disease Recognition
