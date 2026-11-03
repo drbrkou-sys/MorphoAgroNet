@@ -10,30 +10,6 @@ The framework integrates lesion morphology analysis, multi-scale feature extract
 
 It also incorporates environment-adaptive robust learning to study model performance under different image conditions.
 
-## 2. System Architecture
-
-```mermaid
-flowchart TD
-    A[Input Plant Leaf Image] --> B[Field-Aware Preprocessing]
-    B --> C[ResNet-50 Feature Extraction]
-
-    C --> D[Lesion Morphology Estimation]
-    D --> E[Geometry Descriptor Extraction]
-
-    C --> F[Multi-Scale Lesion Geometry Encoding]
-    E --> F
-
-    F --> G[Geometry-Guided Attention]
-    G --> H[Hierarchical Feature Fusion]
-    H --> I[Fine-Grained Semantic Separation]
-    I --> J[Disease Classification]
-
-    B --> K[Environment-Adaptive Robust Learning]
-    K --> I
-
-    J --> L[Performance Evaluation]
-    J --> M[Explainable AI]
-```
 
 ## 3. Key Components
 
@@ -166,7 +142,7 @@ python scripts/explain.py --help
 
 Use the corresponding configuration files and command-line arguments for the required dataset and experiment. Refer to `HOW_TO_RUN.txt` for execution details.
 
-## 8. Evaluation
+## 6. Evaluation
 
 The framework provides the following evaluation capabilities:
 
@@ -183,7 +159,7 @@ The framework provides the following evaluation capabilities:
 
 Additional experiment scripts support baseline comparison, ablation studies, robustness evaluation, transfer evaluation, statistical analysis, and model profiling.
 
-## 9. Requirements
+## 7. Requirements
 
 - Python 3.10 or compatible environment
 - PyTorch
@@ -200,11 +176,11 @@ Additional experiment scripts support baseline comparison, ablation studies, rob
 
 Install the dependencies using `requirements.txt`.
 
-## 10. License
+## 8. License
 
 This project is released under the **MIT License**. See the `LICENSE` file for details.
 
-## 11. Repository
+## 9. Repository
 
 **GitHub:** https://github.com/drbrkou-sys/MorphoAgroNet
 
@@ -212,12 +188,12 @@ This project is released under the **MIT License**. See the `LICENSE` file for d
 git clone https://github.com/drbrkou-sys/MorphoAgroNet.git
 ```
 
-## 12. Citation
+## 10. Citation
 
 If you use this framework in your research, please cite the repository.
 
 A formal citation and DOI can be added after the Zenodo record is published.
 
-## 13. Contact
+## 11. Contact
 
 For questions, research collaboration, or technical discussions, please contact the project authors through the GitHub repository.
