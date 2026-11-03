@@ -1,0 +1,22 @@
+model: morphoagronet
+image_size: 224
+backbone: resnet50
+pretrained: true
+batch_size: 32
+max_epochs: 100
+optimizer: AdamW
+weight_decay: 0.0001
+learning_rate_candidates: [0.001, 0.0005, 0.0001]
+backbone_lr_factor: 0.1
+warmup_epochs: 5
+minimum_lr: 0.000001
+patience: 15
+label_smoothing: 0.10
+max_grad_norm: 5.0
+seeds: [42,123,2024,2025,3407]
+split: [0.7,0.1,0.2]
+lesion_loss_weight: 0.20
+lesion_area_weight: 0.10
+# Selected code defaults; numerical source values for the remaining losses are not reliably extracted.
+fgss_loss_weight: 0.10
+earl_loss_weight: 0.20

@@ -1,0 +1,8 @@
+variants:
+  - full
+  - without_mlge
+  - without_ggab
+  - without_hmf
+  - without_fgss
+  - without_earl
+  - without_lesion

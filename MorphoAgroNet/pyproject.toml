@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "morphoagronet"
+version = "0.1.0"
+description = "MorphoAgroNet geometry-guided fine-grained plant disease recognition research implementation"
+requires-python = ">=3.11"
+dependencies = ["torch>=2.6", "torchvision>=0.21", "numpy>=1.26", "pandas>=2.1", "Pillow>=10", "opencv-python-headless>=4.8", "scikit-learn>=1.4", "scipy>=1.11"]
+[tool.setuptools.packages.find]
+include = ["morphoagronet*"]

@@ -1,0 +1,47 @@
+MORPHOAGRONET: HOW TO RUN
+=======================
+
+1. Install Python 3.11; unzip MorphoAgroNet.zip and open a terminal inside MorphoAgroNet.
+2. Install requirements:
+     python -m pip install -r requirements.txt
+     python -m pip install -e . --no-deps
+3. Check installation:
+     python -m pytest -q
+4. Download datasets manually. See README.md for URLs and required directory layouts.
+5. Prepare each manifest:
+     python scripts/prepare_data.py --root data/raw/plantvillage --kind plantvillage --output data/manifests/plantvillage.csv
+     python scripts/prepare_data.py --root data/raw/plantdoc --kind plantdoc --output data/manifests/plantdoc.csv
+     python scripts/prepare_data.py --root data/raw/pathology2020 --kind pathology2020 --output data/manifests/pathology2020.csv
+6. Train MorphoAgroNet:
+     python scripts/train.py --manifest data/manifests/plantvillage.csv --epochs 100 --batch 32 --seed 42 --output results/plantvillage/seed42
+7. Evaluate test split:
+     python scripts/evaluate.py --manifest data/manifests/plantvillage.csv --checkpoint results/plantvillage/seed42/best.pt
+8. Predict a leaf image:
+     python scripts/predict.py --checkpoint results/plantvillage/seed42/best.pt --image PATH_TO_LEAF.jpg
+9. Generate Grad-CAM, geometry maps and lesion maps:
+     python scripts/explain.py --checkpoint results/plantvillage/seed42/best.pt --image PATH_TO_LEAF.jpg
+10. Repeat independently using seeds 42, 123, 2024, 2025 and 3407.
+11. Baselines:
+     python scripts/train_baselines.py --manifest data/manifests/plantvillage.csv
+12. Component ablations:
+     python scripts/run_ablations.py --manifest data/manifests/plantvillage.csv
+13. Environmental robustness:
+     python scripts/run_robustness.py --manifest data/manifests/plantvillage.csv --checkpoint results/plantvillage/seed42/best.pt
+14. Computational profiling:
+     python scripts/profile_model.py --checkpoint results/plantvillage/seed42/best.pt
+15. Source/target adaptation (check class labels first):
+     python scripts/run_transfer.py --checkpoint results/plantvillage/seed42/best.pt --target-manifest data/manifests/plantdoc.csv --source-kind plantvillage --target-kind plantdoc --adapt
+16. Independent lesion localization with a prepared image,mask,class_id CSV:
+     python scripts/evaluate_localization.py --checkpoint results/plantvillage/seed42/best.pt --pairs data/plantseg_pairs.csv
+
+CPU / OFFLINE SMOKE TRAINING
+----------------------------
+Use --no-pretrained on train.py when pretrained weights cannot be downloaded.
+Use --batch 4 --grad-accum 8 when GPU memory is limited (effective batch size 32).
+The code can run on CPU, but full-dataset, multi-seed training is GPU-intensive.
+
+NOTE
+----
+The ZIP contains source code and tests, not datasets or a trained model.
+Consult README.md for manuscript-specific caveats and the difference between
+an implementation smoke test and reproduction of reported SCI results.
